@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserService {
 
     @Autowired
@@ -26,6 +25,7 @@ public class UserService {
     @Autowired
     private EntityManager em;
 
+    @Transactional
     public User getUserByEmail(String email) {
 
         TypedQuery<User> user = em.createQuery(
@@ -34,26 +34,32 @@ public class UserService {
         return user.getSingleResult();
     }
 
+    @Transactional
     public User getUserById(long id) {
         return userRepository.findById(id).get(); //eager operation
     }
 
+    @Transactional
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    @Transactional
     public void save(User user) {
         userRepository.save(user);
     }
 
+    @Transactional
     public void update(User user) {
         userRepository.save(user);
     }
 
+    @Transactional
     public void delete(long id) {
         userRepository.deleteById(id);
     }
 
+    @Transactional
     public void setInitData() {
         Role userRole = new Role("ROLE_USER");
         Role adminRole = new Role("ROLE_ADMIN");
