@@ -59,7 +59,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    @Transactional
+    
     public void setInitData() {
         Role userRole = new Role("ROLE_USER");
         Role adminRole = new Role("ROLE_ADMIN");
